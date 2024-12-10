@@ -1,0 +1,226 @@
+﻿%----- style file (Japanese) -----
+%
+%  Style file for JORSJ sumitted papers in Japanese
+%  File name jjorsj-s2.sty  Modified July 29, 2005
+%
+%  This is only valid for LaTeX2e.
+%  Please use jjorsj-s2-209.sty for LaTeX2.09.
+%
+%  使い方 ： このファイルを ``template.sty'' でセーブして，
+%            \documentclass[12pt]{jarticle}
+%            \usepackage{template}
+%            と読み込んで下さい．
+%
+% 式番号を (章番号・式番号）のフォーマットに変更するときは、
+% preamble で
+%   \eqswitchon
+% と書いて下さい。
+%
+
+% set lengths
+\textheight 24.4cm
+\textwidth 16.4cm
+% \baselineskip 14pt
+\topmargin 0.0cm
+\headheight 0.0cm
+\headsep 0.0cm
+\footskip 1.0cm
+%\footheight 0.0cm
+\oddsidemargin 0.0cm
+\evensidemargin 0.0cm
+\parindent 1em
+
+% pagestyle
+\pagestyle{plain}
+
+% title
+\newcommand{\header}[1]{\def\@header{\hspace*{-1em}{\large 卒業論文} \hfill {\large #1}}}
+\def\titleEnglish#1{
+\begin{center}
+  {\large #1}\par\vspace{1em}
+\end{center}
+}
+\newcommand{\studentId}[1]{\def\@studentId{（学籍番号 : #1）}}
+\newcommand{\supervisor}[2]{\def\@supervisor{指導教員 \hspace{1em} #1 \hspace{1em} #2}}
+\newcommand{\completedDay}[2]{\def\@completedDay{#1 #2}}
+\newcommand{\institute}[2]{\def\@institute{#1\\#2}}
+\renewcommand{\maketitle}{
+\@header
+\vspace{4cm}
+\begin{center}
+  {\LARGE \@title}
+\end{center}
+\vspace{4cm}
+\begin{center}
+  {\Large \@author}
+\end{center}
+\begin{center}
+  {\large \@studentId}
+\end{center}
+\vspace{4cm}
+\begin{center}
+  {\large \@supervisor}
+\end{center}
+\vspace{2cm}
+\begin{center}
+  {\large \@completedDay}
+\end{center}
+\vfill
+\begin{center}
+  {\large \@institute}
+\end{center}
+\thispagestyle{empty}
+\clearpage
+\addtocounter{page}{-1}
+}
+
+\def\abstract{
+\vspace{3cm}
+\begin{center}
+  {\bf {\large 論文要旨}}
+\end{center}
+\par
+\vspace{1em}
+}
+\def\endabstract{
+\thispagestyle{empty}
+\clearpage
+\addtocounter{page}{-1}
+}
+
+\def\abstractEnglish{
+\vspace{3cm}
+\begin{center}
+  {\bf {\large Thesis Abstract}}
+\end{center}
+\par
+\vspace{1em}
+}
+\def\endabstractEnglish{
+\thispagestyle{empty}
+\clearpage
+\addtocounter{page}{-1}
+}
+
+\newcommand{\sign}[4]{\def\@sign{\vspace{2em} #1 \\ \vspace{1.5em} #2 \hspace{0.5em} #3 \\ #4}}
+\def\acknowledgments{
+\vspace{3cm}
+\begin{center}
+  {\bf {\large 謝辞}}
+\end{center}
+\par
+\vspace{1em}
+}
+\def\endacknowledgments{
+\begin{flushright}
+\@sign
+\end{flushright}
+\thispagestyle{empty}
+\clearpage
+\addtocounter{page}{-1}
+}
+
+% section title
+\def\section{\@startsection {section}{1}{\z@}%
+%{15.0pt plus 1.0pt minus  1.0pt}%{2.0pt plus 1.0pt minus 0.0pt}%{\normalsize\bf}}
+{0pt}%
+{15.0pt plus 1.0pt minus 0pt}%
+{\newpage\LARGE\bf}}
+\def\subsection{\@startsection{subsection}{2}{\z@}%
+%{2.0pt plus 1.0pt minus 0.0pt}%{2.0pt plus 1.0pt minus 0.0pt}%{\normalsize\bf}}
+{10.0pt plus 1.0pt minus 0.0pt}%
+{5.0pt plus 1.0pt minus 0.0pt}%
+{\Large\bf}}
+\def\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+%{2.0pt plus 1.0pt minus 0.0pt}%{2.0pt plus 1.0pt}%{\normalsize\bf}}
+{10.0pt plus 1.0pt minus 0.0pt}%
+{2.0pt plus 1.0pt}%
+{\large\bf}}
+\def\paragraph{\@startsection{paragraph}{4}{\z@}%
+{2.0pt plus 1.0pt minus 0.0pt}{2.0pt plus 1.0pt}%
+{\normalsize\bf}}
+\def\subparagraph{\@startsection{subparagraph}{4}%
+{\parindent}{2.0pt plus 1.0pt minus 0.0pt}{2.0pt plus
+1.0pt}{\normalsize\bf}}
+
+% equations
+\newif\ifequationnumber
+\def\eqswitchon{\equationnumbertrue
+\@addtoreset{equation}{section}
+%\def\@eqnnum{\hbox to .01pt{}%
+%\rlap{\rm \hskip -\displaywidth(\theequation)}}
+\def\theequation{\arabic{section}.\arabic{equation}}
+}
+
+% lists
+\def\@listI{\leftmargin\leftmargini
+\parsep 1.5pt plus 0.5pt minus 0.5pt\topsep
+0.5pt plus 0.5pt minus 0.5pt\itemsep 0.5pt
+plus 0.5pt minus 0.5pt}
+\let\@listi\@listI
+\@listi
+\def\@listii{\leftmargin\leftmarginii
+ \labelwidth\leftmarginii\advance\labelwidth-\labelsep
+ \topsep 0.5pt plus 0.5pt minus 0.5pt
+ \parsep 1.5pt plus 0.5pt minus 0.5pt
+ \itemsep \topsep}
+\def\@listiii{\leftmargin\leftmarginiii
+ \labelwidth\leftmarginiii\advance\labelwidth-\labelsep
+ \topsep 0.5pt plus 0.5pt minus 0.5pt
+ \parsep \z@ \partopsep 0.5pt plus 0pt minus 0.5pt
+ \itemsep \topsep}
+\def\@listiv{\leftmargin\leftmarginiv
+ \labelwidth\leftmarginiv\advance\labelwidth-\labelsep}
+\def\@listv{\leftmargin\leftmarginv
+ \labelwidth\leftmarginv\advance\labelwidth-\labelsep}
+\def\@listvi{\leftmargin\leftmarginvi
+ \labelwidth\leftmarginvi\advance\labelwidth-\labelsep}
+
+% section number
+\makeatletter
+
+\def\@sect#1#2#3#4#5#6[#7]#8{\ifnum #2>\c@secnumdepth
+     \def\@svsec{}\else
+     \refstepcounter{#1}
+     \edef\@svsec{\csname the#1\endcsname.\hskip 1em }\fi
+     \@tempskipa #5\relax
+      \ifdim \@tempskipa>\z@
+        \begingroup #6\relax
+          \@hangfrom{\hskip #3\relax\@svsec}%
+                   {\interlinepenalty \@M #8\par}%
+        \endgroup
+       \csname #1mark\endcsname{#7}\addcontentsline
+         {toc}{#1}{\ifnum #2>\c@secnumdepth \else
+          \protect\numberline{\csname the#1\endcsname.}\fi
+                    #7}\else
+    \def\@svsechd{#6\hskip #3%
+           \@svsec #8\csname #1mark\endcsname
+                   {#7}\addcontentsline
+             {toc}{#1}{\ifnum #2>\c@secnumdepth \else
+       \protect\numberline{\csname the#1\endcsname.}\fi
+                       #7}}\fi
+     \@xsect{#5}}
+\makeatother
+
+% references
+\def\thebibliography#1{\section*{{\normalsize
+{\bf 参考文献}}\markboth
+ {参 考 文 献}{参 考 文 献}}\vspace*{4.0pt}\list
+ {[\arabic{enumi}]}{\settowidth\labelwidth{[#1]}
+\leftmargin\labelwidth
+ \advance\leftmargin\labelsep
+ \usecounter{enumi}}
+ \def\newblock{\hskip .11em plus .33em minus .07em}
+ \sloppy
+ \sfcode`\.=1000\relax}
+\let\endthebibliography=\endlist
+
+% appendix
+\def\appendix{\par
+ \setcounter{section}{0}
+ \setcounter{subsection}{0}
+ \def\thesection{\Alph{section}}
+\ifequationnumber
+ \def\theequation{\Alph{section}.\arabic{equation}}
+\fi}
+%----- JORSJ (Japanese) -----
